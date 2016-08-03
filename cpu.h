@@ -45,17 +45,17 @@
 #    include <x86intrin.h>
 #  endif
 #  if CRYPTOPP_BOOL_SSE2_AVAILABLE
-#    include <emmintrin.h>    // _mm_set_epi64x
+#    include <emmintrin.h>    // mm_set_epi64x
 #  endif
 #  if CRYPTOPP_BOOL_SSE3_AVAILABLE
-#    include <tmmintrin.h>    // _mm_shuffle_epi16
+#    include <tmmintrin.h>    // mm_shuffle_epi16
 #  endif
 #  if CRYPTOPP_BOOL_AESNI_AVAILABLE
 #    include <wmmintrin.h>    // aes and pclmul
 #  endif
 #  if CRYPTOPP_BOOL_SSE4_AVAILABLE
-#    include <smmintrin.h>    // _mm_blend_epi16
-#    include <nmmintrin.h>    // _mm_crc32_u{8|16|32}
+#    include <smmintrin.h>    // mm_blend_epi16
+#    include <nmmintrin.h>    // mm_crc32_u{8|16|32}
 #  endif
 #endif // X86, X32 and X64
 
