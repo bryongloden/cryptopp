@@ -28,16 +28,16 @@
 
 // ARM32/ARM64 includes
 #if (CRYPTOPP_BOOL_ARM32 || CRYPTOPP_BOOL_ARM64)
-#  if CRYPTOPP_BOOL_NEON_AVAILABLE
-#    include <arm_neon.h>
-#  endif
-#  if (CRYPTOPP_BOOL_ARM_CRYPTO_AVAILABLE || CRYPTOPP_BOOL_ARM_CRC32_AVAILABLE)
-#    include <stdint.h>
-#    if (defined(__ARM_ACLE) || defined(__GNUC__)) && !defined(__APPLE__)
-#      include <arm_acle.h>
-#    endif
-#  endif
-#endif  // ARM32 or ARM64
+# if defined(__GNUC__)
+#  include <stdint.h>
+# endif
+# if CRYPTOPP_BOOL_NEON_AVAILABLE || defined(__ARM_NEON)
+#  include <arm_neon.h>
+# endif
+# if (CRYPTOPP_BOOL_ARM_CRYPTO_AVAILABLE || CRYPTOPP_BOOL_ARM_CRC32_AVAILABLE) || defined(__ARM_ACLE)
+#  include <arm_acle.h>
+# endif
+#endif  // ARM32 and ARM64
 
 // X86/X32/X64 includes
 #if (CRYPTOPP_BOOL_X86 || CRYPTOPP_BOOL_X32 || CRYPTOPP_BOOL_X64)
@@ -45,21 +45,17 @@
 #    include <x86intrin.h>
 #  endif
 #  if CRYPTOPP_BOOL_SSE2_AVAILABLE
-#    include <emmintrin.h>
+#    include <emmintrin.h>    // mm_set_epi64x
 #  endif
 #  if CRYPTOPP_BOOL_SSE3_AVAILABLE
-#    include <emmintrin.h>
-#    include <tmmintrin.h>
+#    include <tmmintrin.h>    // mm_shuffle_epi16
 #  endif
 #  if CRYPTOPP_BOOL_AESNI_AVAILABLE
-#    include <emmintrin.h>
-#    include <wmmintrin.h>
+#    include <wmmintrin.h>    // aes and pclmul
 #  endif
 #  if CRYPTOPP_BOOL_SSE4_AVAILABLE
-#    include <emmintrin.h>    // _mm_set_epi64x
-#    include <smmintrin.h>    // _mm_blend_epi16
-#    include <tmmintrin.h>    // _mm_shuffle_epi16
-#    include <nmmintrin.h>    // _mm_crc32_u{8|16|32}
+#    include <smmintrin.h>    // mm_blend_epi16
+#    include <nmmintrin.h>    // mm_crc32_u{8|16|32}
 #  endif
 #endif // X86, X32 and X64
 
