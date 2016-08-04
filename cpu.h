@@ -31,10 +31,10 @@
 # if defined(__GNUC__)
 #  include <stdint.h>
 # endif
-# if CRYPTOPP_BOOL_NEON_INTRINSICS_AVAILABLE || defined(__ARM_NEON)
+# if CRYPTOPP_BOOL_NEON_AVAILABLE || defined(__ARM_NEON)
 #  include <arm_neon.h>
 # endif
-# if (CRYPTOPP_BOOL_ARM_CRYPTO_INTRINSICS_AVAILABLE || CRYPTOPP_BOOL_ARM_CRC32_INTRINSICS_AVAILABLE) || defined(__ARM_ACLE)
+# if (CRYPTOPP_BOOL_ARM_CRYPTO_AVAILABLE || CRYPTOPP_BOOL_ARM_CRC32_AVAILABLE) || defined(__ARM_ACLE)
 #  include <arm_acle.h>
 # endif
 #endif  // ARM32 and ARM64
